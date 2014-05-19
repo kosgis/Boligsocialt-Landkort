@@ -1,0 +1,176 @@
+﻿{ 
+    "text": {
+        "title": "Boligsocialt Landkort",
+        "description": "<p>På Boligsociale Landkort kan du se data over boliger og befolkningen i Frederiksberg Kommune samt se udviklingen over tid for de enkelte områder i byen. Data er tilgængeligt for hvert kvartal og vedligeholdes løbende.</p><br><h4>Vejledning</h4><p>Start ved at klikke på knappen \"Tilføj Tema\" og gå på opdagelse i de tilgængelige data. Når du har valgt et tema kan du trykke på en karré for at se statistik eller trykke på \"play\"-knappen for at se en grafisk fremvisning over tid. </p>"
+    },
+    "map": { 
+        "minZoom": 13, 
+        "maxZoom": 20,
+        "zoom": 14,
+        "center": [55.678265,12.531274]
+    },
+    "baseLayer": {
+        "URLtemplate": "http://54.229.79.223:8888/v2/BoSoLaK/{z}/{x}/{y}.png",
+        "options": {
+            "minZoom": 12,
+            "maxZoom": 20,
+            "attribution": "&copy Frederiksberg Kommune"
+        }
+    },
+    "vector": {
+        "12": {"url": "demo-data/karre_4326.geojson", "title": "Karreer"},
+        "11": {"url": "demo-data/kvadratnet_4326.geojson", "title": "Kvadratnet"}
+    },
+    "data": [
+        {
+            "title": "Boliger",
+            "description": "Data om boliger, trukket fra BBR",
+            "data": [
+                {
+                    "title": "Boligkvadratmeter pr. person",
+                    "description": "Beregnet ved at dele det samlede antal boligkvadratmeter i et område med antallet af beboere.",
+                    "vector": ["12","11"],
+                    "data": "demo-data/boligkvm_per_person.json",
+                    "col": "areal_per_peson",
+					"colors": [
+					    {"min": 0, "max": 0, "color": "#CCCCCC"},
+              		    {"min": 1, "max": 40, "color": "#D7191C"},
+					    {"min": 40, "max": 50, "color": "#FDAE61"},
+                        {"min": 50, "max": 60, "color": "#FFFFBF"},
+                        {"min": 60, "max": 80, "color": "#A6D96A"},
+						{"min": 80, "max": 120, "color": "#1A9641"}
+					],
+                    "decimals": 1,
+                    "unit": "m2"
+                },{
+                    "title": "Boliger med mangler",
+                    "description": "En bolig med mangel er en BBR-enhed, hvor der ikke er central- eller fjernvarme, bad og/eller eget toilet.",
+                    "vector": ["12","11"],
+                    "data": "demo-data/boliger_med_mangler.json",
+                    "colors": [
+                        {"min": 0, "max": 1, "color": "#FFFFB2"},
+                        {"min": 1, "max": 5, "color": "#FECC5C"},
+                        {"min": 5, "max": 10, "color": "#FD8D3C"},
+                        {"min": 10, "max": 30, "color": "#F03B20"},
+                        {"min": 30, "max": 100, "color": "#BD0026"}
+                    ],
+                    "col": "procent",
+                    "decimals": 1,
+                    "unit": "%"
+                },{
+                    "title": "Boliger under 60 kvm",
+                    "description": "En bolig under 60 kvm angiver en BBR-enhed, hvor det registrerede boligareal er mindre end 60 kvm.",
+                    "vector": ["12","11"],
+                    "data": "demo-data/boliger_under_60kvm.json",
+                    "col": "procent",
+				    "colors": [
+                        {"min": 0, "max": 1, "color": "#006837"},
+                        {"min": 1, "max": 5, "color": "#31A354"},
+                        {"min": 5, "max": 10, "color": "#78C679"},
+                        {"min": 10, "max": 30, "color": "#C2E699"},
+                        {"min": 30, "max": 100, "color": "#FFFFCC"}
+                    ],
+                    "decimals": 1,
+                    "unit": "%"
+                }
+            ]
+        },{        
+            "title": "Befolkningssammensætning",
+            "description": "Data om befolkningssammensætning, dvs. alder og etnicitet",
+            "data": [
+                {
+				"title": "Befolkningstæthed",
+                    "description": "Befolkningstætheden er beregnet ved antal personer pr. 100 kvm (kvadratnet)",
+                    "vector": ["11"],
+                    "data": "demo-data/befolkning_alle.json",
+                    "col": "antal_samlet",
+				    "colors": [
+                        {"min": 0, "max": 10, "color": "#FFFFCC"},
+                        {"min": 10, "max": 50, "color": "#C2E699"},
+                        {"min": 50, "max": 100, "color": "#78C679"},
+                        {"min": 100, "max": 250, "color": "#31A354"},
+                        {"min": 250, "max": 500, "color": "#006837"}
+                    ],
+                    "decimals": 1,
+                    "unit": "pr."
+				},{
+				"title": "Befolkning i alderen 0-5 år",
+                    "description": "Kortet viser den relative andel personer i et område i alderen 0-5 år. Beregnet ved at dele antallet af personer i alderen 0-5 år med det samlede antal personer i et område, gange med 100.",
+                    "vector": ["12","11"],
+                    "data": "demo-data/befolkning_0_5.json",
+                    "col": "procent",
+				    "colors": [
+                        {"min": 0, "max": 1, "color": "#FFFFCC"},
+                        {"min": 1, "max": 5, "color": "#C2E699"},
+                        {"min": 5, "max": 10, "color": "#78C679"},
+                        {"min": 10, "max": 20, "color": "#31A354"},
+                        {"min": 20, "max": 30, "color": "#006837"}
+                    ],
+                    "decimals": 1,
+                    "unit": "%"
+				},{
+					"title": "Befolkning i alderen 6-17 år",
+                    "description": "Kortet viser den relative andel personer i et område i alderen 6-17 år. Beregnet ved at dele antallet af personer i alderen 6-17 år med det samlede antal personer i et område, gange med 100.",
+                    "vector": ["12","11"],
+                    "data": "demo-data/befolkning_6_17.json",
+                    "col": "procent",
+				    "colors": [
+                        {"min": 0, "max": 1, "color": "#FFFFCC"},
+                        {"min": 1, "max": 5, "color": "#C2E699"},
+                        {"min": 5, "max": 10, "color": "#78C679"},
+                        {"min": 10, "max": 20, "color": "#31A354"},
+                        {"min": 20, "max": 50, "color": "#006837"}
+                    ],
+                    "decimals": 1,
+                    "unit": "%"
+				},{
+                    "title": "Befolkning i alderen 18-64 år",
+                    "description": "Kortet viser den relative andel personer i et område i alderen 18-64 år. Beregnet ved at dele antallet af personer i alderen 18-64 år med det samlede antal personer i et område, gange med 100.",
+                    "vector": ["12","11"],
+                    "data": "demo-data/befolkning_18_64.json",
+                    "col": "procent",
+					"colors": [
+					    {"min": 0, "max": 20, "color": "#FFFFCC"},
+                        {"min": 20, "max": 40, "color": "#C2E699"},
+                        {"min": 40, "max": 60, "color": "#78C679"},
+                        {"min": 60, "max": 80, "color": "#31A354"},
+                        {"min": 80, "max": 100, "color": "#006837"}
+					],
+                    "decimals": 1,
+                    "unit": "%"
+                },{
+                    "title": "Befolkning i alderen 65-74 år",
+                    "description": "Kortet viser den relative andel personer i et område i alderen 65-74 år. Beregnet ved at dele antallet af personer i alderen 65-74 år med det samlede antal personer i et område, gange med 100.",
+                    "vector": ["12","11"],
+                    "data": "demo-data/befolkning_65_74.json",
+					"col": "procent",
+                    "colors": [
+                        {"min": 0, "max": 1, "color": "#FFFFCC"},
+                        {"min": 1, "max": 5, "color": "#C2E699"},
+                        {"min": 5, "max": 10, "color": "#78C679"},
+                        {"min": 10, "max": 20, "color": "#31A354"},
+                        {"min": 20, "max": 50, "color": "#006837"}
+                    ],
+                    "decimals": 1,
+                    "unit": "%"
+				},{
+                    "title": "Befolkning i alderen 75+ år",
+                    "description": "Kortet viser den relative andel personer i et område i alderen 75+ år. Beregnet ved at dele antallet af personer i alderen 75+ år med det samlede antal personer i et område, gange med 100.",
+                    "vector": ["12","11"],
+                    "data": "demo-data/befolkning_75.json",
+					"col": "procent",
+                    "colors": [
+                        {"min": 0, "max": 1, "color": "#FFFFCC"},
+                        {"min": 1, "max": 5, "color": "#C2E699"},
+                        {"min": 5, "max": 20, "color": "#78C679"},
+                        {"min": 10, "max": 20, "color": "#31A354"},
+                        {"min": 20, "max": 100, "color": "#006837"}
+                    ],
+                    "decimals": 1,
+                    "unit": "%"
+				}
+            ]
+        }
+		
+    ]
+}

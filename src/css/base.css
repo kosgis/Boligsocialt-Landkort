@@ -1,0 +1,300 @@
+html,body,#sidebar,#container {
+    height: 100%;
+    margin: 0px;
+}
+
+body {
+    padding-top: 50px;
+}
+
+label {
+    font-weight: normal;
+}
+
+#map {
+    height: 100%;
+    margin: 0px;
+    -webkit-box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar {
+    background-color: white;
+    border-color: #DFDFDF;
+}
+.navbar .navbar-brand {
+    font-weight: bold;
+    font-size: 22px;
+    color: #000;
+    white-space: nowrap;
+}
+
+.tt-dropdown-menu {
+    overflow: auto;
+}
+
+.tt-hint,.tt-query {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.leaflet-popup-content {
+    margin-top: 14px;
+    margin-bottom: 0px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.panel-heading a:hover {
+    text-decoration: none;
+}
+
+.panel-group#textcontainer {
+    padding: 5px;
+}
+
+a.toggle {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    display: block;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+    -webkit-border-top-right-radius: 4px !important;
+    -moz-border-top-right-radius: 4px !important;
+    border-top-right-radius: 4px !important;
+    -webkit-border-bottom-right-radius: 4px !important;
+    -moz-border-bottom-right-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+    background-color: #222;
+    color: white;
+    opacity: 0.8;
+    z-index: 100;
+}
+
+a:hover.toggle {
+    background: none repeat scroll 0 0 #648F14;
+    color: white;
+    opacity: 1;
+}
+
+@media ( max-width : 992px) {
+    .navbar .navbar-brand {
+        font-size: 18px;
+        float: left;
+    }
+    .leaflet-control-attribution {
+        display: none;
+    }
+}
+
+@media ( max-width : 768px) {
+}
+/* Print Handling */
+@media print {
+    .navbar,.toggle,#sidebar {
+        display: none !important;
+    }
+}
+
+a.navbar-brand:hover {
+    color: #000 !important;
+}
+
+.btn-success {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    background: none repeat scroll 0 0 #648F14;
+}
+.btn-success:hover {
+    background: none repeat scroll 0 0 #739F40;
+}
+button {
+}
+button > i.glyphicon-plus {
+    font-size: 14px;
+    padding-right: 20px;
+}
+
+a.navbar-logo {
+    background-image: url("http://www.frederiksberg.dk/~/media/Forside/Forsidebilleder-2013/logo.ashx");
+    background-size: 200px 40px;
+    height: 40px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 200px;
+}
+
+
+
+.list-heading {
+    background: #F5F5F5;
+    color: #333333;
+}
+.list-heading-group h4 {
+    font-weight: bold;
+}
+.list-heading .caret {
+    margin-top: 10px;
+    margin-right: 7px;
+}
+.modal-body {
+    max-height: 540px;
+    overflow-y: scroll;
+}
+.caret-up {
+    border-width: 0 4px 4px;
+}
+.list-iten-hidden {
+    padding: 0 !important;
+    height: 0 !important;
+    border: 0 !important;
+    position: absolute;
+    left: -10000px;
+}
+
+.input-group-addon > .close {
+    margin-top: -5px;
+    color: #000;
+    opacity: 0.6;
+}
+
+
+
+.panel-heading {
+    padding: 6px 15px;
+}
+
+
+.graph-content {
+    width: 100%;
+    height: 300px;
+    background-color: #F5F5F5;
+    margin-top: 0;
+}
+
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: orange;
+}
+
+.bar:hover {
+  fill: orangered ;
+}
+
+.axis text {
+  font-size: 11px;
+}
+.x.axis path {
+  display: none;
+}
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 5.5px;
+}
+.point {
+  fill: steelblue;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+.point circle:hover {
+  stroke: orangered;
+  stroke-width: 4.5px;
+}
+.tick text {
+    font-size: 10px;
+}
+
+.labels {
+    text-align: right;
+    font-size: 11px;
+}
+.labels div {
+    padding: 3px 32px 3px 0;
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+}
+.labels div.label-selected {
+    background-image: url("selected.png");
+    background-size: 24px 13px;
+}
+.labels div.label-avg {
+    background-image: url("avg.png");
+}
+
+
+.legend-content {
+    margin: 10px;
+}
+.legend-content .table {
+    margin-bottom: 0;
+    border: 0px;
+}
+.legend-content .table td {
+    padding: 0;
+    text-align: center;
+    font-size: 10px;
+}
+.legend-content .table div {
+    height: 20px;
+    width: 100%;
+}
+
+.timeslider {
+    padding: 20px 10px;
+}
+.timeslider input {
+    width: 200px;
+}
+.timeslider > i.glyphicon {
+    color: steelblue;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 2px 20px 2px 0;
+}
+.timeslider > .slider-container {
+    padding-right: 14px;
+    padding-left: 40px;
+    margin-top: 7px;
+}
+
+.timeslider .slider-track {
+    background-color: steelblue;
+    background-image: none;
+    height: 2px !important;
+}
+.timeslider .slider-selection {
+    background-color: transparent;
+    background-image: none;
+}
+
+.timeslider .slider-handle {
+    height: 14px !important;
+    width: 14px !important;
+    background-color: steelblue !important;
+    margin-left: -8px !important;
+    margin-top: -6px !important;
+    background-image: linear-gradient(to bottom, steelblue, steelblue);
+    opacity: 1;
+}
+.timeslider > .slider-container:hover .slider-handle {
+    background-color: red !important;
+    background-image: linear-gradient(to bottom, red, red);
+}
