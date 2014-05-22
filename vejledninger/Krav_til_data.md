@@ -89,4 +89,4 @@ Eksempel:
 ###Behandling af data i pilotprojektet:###
 I pilotprojektet er data behandlet som vist i figuren nedenfor. 
 
-![](screendumps/workflow_GIS.png)
+![](https://raw.githubusercontent.com/kosgis/Boligsocialt-Landkort/master/screendumps/workflow_GIS.png)
