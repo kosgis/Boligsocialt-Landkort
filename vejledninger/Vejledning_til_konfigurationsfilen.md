@@ -75,7 +75,7 @@ Når egne karreer/kvadratnet skal konfigureres, skal følgende tages stilling ti
 
 - `"title":` Her defineres det, hvad distriktet skal hedde i webløsningen, således der kan skiftes imellem flere slags distrikter. 
 
-![](screendumps/vectornummerering.PNG)
+![](../screendumps/vectornummerering.PNG)
 
 ###data###
 
@@ -148,7 +148,7 @@ Her opsættes hhv., hvilke vectorer datasættet skal pege på, hvilken JSON data
 	- Her defineres intervallet for datafremvisningen i WebGIS-løsningen ved at ændre på grænserne `"min"` og `"max"`. Der kan også ændret på antallet af intervaller, ved at slette en række. 
 	- Yderligere kan farven, for det specifikke interval, defineres ved at ændre på denne farvekode `"#CCCCCC"`
 
-![](screendumps/intervaller.PNG)
+![](../screendumps/intervaller.PNG)
 
 <br>
 ***Decimaler og enhedsbetegnelse***:
