@@ -28,7 +28,7 @@ For at prøve demoen i en lokal kopi, skal man gøre følgende:
 
 1. Se demo og få indblik i, hvad produktet kan
 
-2. Download hele pakken med Boligsocialt Landkort fra Github ved at trykke på *Download Zip* nede i højre hjørne
+2. Download hele pakken med Boligsocialt Landkort fra Github ved at trykke på [**Download Zip**](https://codeload.github.com/kosgis/Boligsocialt-Landkort/zip/master) nede i højre hjørne
 
 3. Pak zip-filen ud og udstil alle data på nettet, via en webserver (fx. iis eller apache)
  
