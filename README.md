@@ -13,13 +13,13 @@ Boligsocialt Landkort er en webGIS-løsning udviklet til at fremvise boligsocial
 ### Screenshots ###
 
 Forsiden:
-![](screendumps/Bosolak_forside.png)
+![](screendumps/Bosolak_forside.PNG)
 
 Eksempel - Boliger med mangler:
-![](screendumps/Bosolak_boligermedmangler.png)
+![](screendumps/Bosolak_boligermedmangler.PNG)
 
 Eksempel - Befolkning i alderen 0-5 år
-![](screendumps/Bosolak_personer_0_5.png)
+![](screendumps/Bosolak_personer_0_5.PNG)
 
 
 ###Formålet med produktet###
