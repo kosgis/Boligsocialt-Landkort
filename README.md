@@ -34,10 +34,11 @@ For at prøve demoen i en lokal kopi, skal man gøre følgende:
  
 4. Demoløsningen er tilgængelig fra dette link: http://localhost/frb-kort-demo/base.html?c=demo# (ret "http://localhost/frb-kort-demo" så det passer til jeres webserver)
 
-5. Læs *Vejledning til konfigurationsfilen* og *Beskrivelse af demodata* for at eksperimentere med demodata eller opsætte konfigurationsfilen til egne egne data
+5. Læs [**Vejledning til konfigurationsfilen**](vejledninger/Vejledning_til_konfigurationsfilen.md) og [**Beskrivelse af demodata**](vejledninger/Beskrivelse_af_demodata.md) for at eksperimentere med demodata eller opsætte konfigurationsfilen til egne egne data
 
 ###For at komme videre med egne data###
 
 1. Læs dokumentet [**Krav til data**](vejledninger/Krav_til_data.md)
 
-2. Evt. se vejledning til *opsætning i PostgreSQL database* server for et eksempel på, hvordan en database kan opstilles
+2. Evt. se vejledning til [**Opsætning af data i en PostgreSQL database**](vejledninger/Opsætning_i_PostgreSQL.md)
+ server for et eksempel på, hvordan en database kan opstilles
