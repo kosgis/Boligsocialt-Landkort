@@ -4,7 +4,7 @@ Bolisocialt Landkort
 
 ### Produktet ###
 
-Boligsocialt Landkort er en webGIS-løsning udviklet til at fremvise boligsocial data om boliger og befolkning over tid og rum. webGIS-løsning kan også fremvise andre data som sundhedsdata, socioøkonomisk data mv.
+Boligsocialt Landkort er en webGIS-løsning udviklet til at fremvise boligsocial data om boliger og befolkning over tid og rum. WebGIS-løsning kan også fremvise andre data som sundhedsdata, socioøkonomisk data mv.
 
 ### Demo ###
 
