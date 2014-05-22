@@ -8,18 +8,12 @@ Boligsocialt Landkort er en webGIS-løsning udviklet til at fremvise boligsocial
 
 ### Demo ###
 
-[**Se en demo her**](http://kosgis.github.io/Boligsocialt-Landkort/base.html?c=demo#)
+[**Se en live demo her**](http://kosgis.github.io/Boligsocialt-Landkort/base.html?c=demo#)
 
-### Screenshots ###
+### Screenshot af løsning ###
 
-Forsiden:
-![](screendumps/Bosolak_forside.PNG)
 
-Eksempel - Boliger med mangler:
 ![](screendumps/Bosolak_boligermedmangler.PNG)
-
-Eksempel - Befolkning i alderen 0-5 år
-![](screendumps/Bosolak_personer_0_5.PNG)
 
 
 ###Formålet med produktet###
@@ -44,6 +38,6 @@ For at prøve demoen i en lokal kopi, skal man gøre følgende:
 
 ###For at komme videre med egne data###
 
-1. Læs dokumentet *Krav til data*
+1. Læs dokumentet [**Krav til data**](vejledninger/Krav_til_data.md)
 
 2. Evt. se vejledning til *opsætning i PostgreSQL database* server for et eksempel på, hvordan en database kan opstilles
