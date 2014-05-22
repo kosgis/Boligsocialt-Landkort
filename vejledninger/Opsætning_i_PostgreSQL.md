@@ -20,4 +20,4 @@ Indeholder *funktioner* til at beregne/aggregere og joine individdata i distrikt
 Indeholder *aggregreret* individdata på karre/kvadratnet størrelse, som er beregnet ved funktionerne.
 <br>
 ###Workflow over opsætning af data i PostgreSQL i pilotprojektet:###
-![](screendumps/workflow_postgre.png)
+![](../screendumps/workflow_postgre.png)
