@@ -32,7 +32,7 @@ WebGIS-løsningen er udviklet i open source bibliotekerne [**Leaflet**](http://l
 
 For at prøve demoen i en lokal kopi, skal man gøre følgende: 
 
-1. Se demo-videoen ovenfor og få indblik i, hvad produktet kan
+1. Se demo og få indblik i, hvad produktet kan
 
 2. Download hele pakken med Boligsocialt Landkort fra Github ved at trykke på *Download Zip* nede i højre hjørne
 
