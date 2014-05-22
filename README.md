@@ -8,7 +8,7 @@ Boligsocialt Landkort er en webGIS-løsning udviklet til at fremvise boligsocial
 
 ### Demo ###
 
-Se en demo her: 
++Se [**en demo her**](http://kosgis.github.io/Boligsocialt-Landkort/base.html?c=demo#)
 
 ### Screenshots ###
 
