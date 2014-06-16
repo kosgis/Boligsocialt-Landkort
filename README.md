@@ -24,7 +24,7 @@ WebGIS-løsningen er udviklet i open source bibliotekerne [**Leaflet**](http://l
 
 ###Roadmap###
 Her kan I læse hvor vi er i dag og hvor vi gerne vil hen i fremtiden.
-Link til [**Roadmap**](roadmap.md)
+Link til [**Roadmap**](Roadmap.md)
 
 ###For at komme i gang (installation)###
 
