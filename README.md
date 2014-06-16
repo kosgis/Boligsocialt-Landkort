@@ -22,6 +22,10 @@ Frederiksberg Kommune ser positivt på erfaringsdeling og samarbejde omkring pro
 
 WebGIS-løsningen er udviklet i open source bibliotekerne [**Leaflet**](http://leafletjs.com/) og [**Data-Driven Documents**](http://d3js.org//).
 
+###Roadmap###
+Her kan I læse hvor vi er i dag og hvor vi gerne vil hen i fremtiden.
+Link til [**Roadmap**](roadmap.md)
+
 ###For at komme i gang (installation)###
 
 For at prøve demoen i en lokal kopi, skal man gøre følgende: 
