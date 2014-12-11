@@ -6,34 +6,34 @@ $(document).ready(function() {
 });
 
 FrbKort = {
-    
+
     /**
      * The map object
      */
     map: null,
-    
+
     /**
      * The config file content
      */
     config: null,
-    
+
     layerDialog: null,
-    
+
     vectorLayer: null,
-    
+
     /**
      * The geojson data
      */
     vector: {},
-    
+
     currentVector: null,
-    
+
     currentDate: null,
-    
+
     visibleData: [],
-    
+
     selectedFeature: null,
-    
+
     sliderPlayDelay: 1000,
 
     /**
@@ -53,21 +53,21 @@ FrbKort = {
             });
         }
     },
-    
+
     /**
      * Method for initializing the GUI on start
      */
     setGui: function () {
-        
+
         if (document.body.clientWidth <= 767) {
             $('#sidebar').toggle();
             $('a.toggle i').toggleClass('glyphicon-chevron-left glyphicon-chevron-right');
         }
-        
+
         $(window).resize(function() {
             $('.tt-dropdown-menu').css('max-height', $('#container').height()-$('.navbar').height()-20);
         });
-        
+
         $('a.toggle').click(this.bind(function() {
             $('a.toggle i').toggleClass('glyphicon-chevron-left glyphicon-chevron-right');
             $('#map').toggleClass('col-sm-9 col-lg-9 col-sm-12 col-lg-12');
@@ -75,7 +75,7 @@ FrbKort = {
             this.map.invalidateSize();
             return false;
         }, this));
-        
+
         $('button#addData').click(this.bind(function () {
             this.setLayerDialog();
         }, this));
@@ -93,14 +93,14 @@ FrbKort = {
             }
         },this));
         $('.input-group span').click(this.bind(this.clearSearch, this));
-        
+
         //Setup the map
         this.setMap();
-        
+
         this.setTitle();
-        
+
     },
-    
+
     setTitle: function () {
         if (this.config && this.config.text) {
             if (this.config.text.title) {
@@ -111,7 +111,7 @@ FrbKort = {
             }
         }
     },
-    
+
     /**
      * Do the search
      */
@@ -128,7 +128,7 @@ FrbKort = {
             } else {
                 $('#layer_'+this.config.data[i].id).addClass('list-iten-hidden');
             }
-            
+
             if (typeof this.config.data[i].data != 'string') {
                 var c = 0;
                 for (var j=0;j<this.config.data[i].data.length;j++) {
@@ -154,7 +154,7 @@ FrbKort = {
             }
         }
     },
-    
+
     /**
      * Called to clear the search string
      */
@@ -163,36 +163,36 @@ FrbKort = {
         $('div.modal-body .list-group a').removeClass('list-iten-hidden');
         $('div.modal-body span.input-group-addon').html ('<i class="glyphicon glyphicon-search"></i>');
     },
-    
+
     /**
      * Get the configuration. The URL parameter "c" defines the name of the .json file
      */
     setLayerDialog: function () {
         if (this.layerDialog === null) {
-            
+
             this.layerDialog = $('#layersModal');
-            
+
             //Populate dialog
             var div = $('<div class="list-group"></div>');
             for (var i=0;i<this.config.data.length;i++) {
                 if (!this.config.data[i].id) {
                     this.config.data[i].id = i;
                 }
-                
+
                 if (typeof this.config.data[i].data == 'string') {
                     //Data that can be added to the map
                     var l = $('<a id="layer_'+this.config.data[i].id+'" href="#" class="list-group-item list-heading">'+
-                              '    <h4 class="list-group-item-heading">'+this.config.data[i].title+'<span class="glyphicon glyphicon-share-alt pull-right"></span></h4>'+
-                              '    '+(this.config.data[i].description ? '<p class="list-group-item-text">'+this.config.data[i].description+'</p>' : '')+
-                              '</a>');
+                    '    <h4 class="list-group-item-heading">'+this.config.data[i].title+'<span class="glyphicon glyphicon-share-alt pull-right"></span></h4>'+
+                    '    '+(this.config.data[i].description ? '<p class="list-group-item-text">'+this.config.data[i].description+'</p>' : '')+
+                    '</a>');
                     l.click(this.bind(this.addData, this, this.config.data[i]));
                     div.append(l);
                 } else {
                     //A group
                     var l = $('<a id="layer_'+this.config.data[i].id+'" href="#" class="list-group-item list-heading">'+
-                              '    <h4 class="list-group-item-heading">'+this.config.data[i].title+'<span class="caret pull-right"></span></h4>'+
-                              '    '+(this.config.data[i].description ? '<p class="list-group-item-text">'+this.config.data[i].description+'</p>' : '')+
-                              '</a>');
+                    '    <h4 class="list-group-item-heading">'+this.config.data[i].title+'<span class="caret pull-right"></span></h4>'+
+                    '    '+(this.config.data[i].description ? '<p class="list-group-item-text">'+this.config.data[i].description+'</p>' : '')+
+                    '</a>');
                     l.click(this.bind(function (config) {
                         if ($('.list-group-content.list-group-'+config.id+':visible').length == 0) {
                             $('.list-group-content:visible').slideToggle();
@@ -202,35 +202,35 @@ FrbKort = {
                         $('#layer_'+config.id+' .caret').toggleClass('caret-up');
                     }, this, this.config.data[i]));
                     div.append(l);
-                    
+
                     for (var j=0;j<this.config.data[i].data.length;j++) {
                         if (!this.config.data[i].data[j].id) {
                             this.config.data[i].data[j].id = i+'_'+j;
                         }
                         // Data, der kan vises i kortet
                         var l = $('<a id="layer_'+this.config.data[i].data[j].id+'" href="#" class="list-group-item list-group-content list-group-'+this.config.data[i].id+'">'+
-                                  '    <h4 class="list-group-item-heading">'+this.config.data[i].data[j].title+'<span class="glyphicon glyphicon-share-alt pull-right"></span></h4>'+
-                                  '    '+(this.config.data[i].data[j].description ? '<p class="list-group-item-text">'+this.config.data[i].data[j].description+'</p>' : '')+
-                                  '</a>');
+                        '    <h4 class="list-group-item-heading">'+this.config.data[i].data[j].title+'<span class="glyphicon glyphicon-share-alt pull-right"></span></h4>'+
+                        '    '+(this.config.data[i].data[j].description ? '<p class="list-group-item-text">'+this.config.data[i].data[j].description+'</p>' : '')+
+                        '</a>');
                         l.hide();
                         l.click(this.bind(this.addData, this, this.config.data[i].data[j]));
                         div.append(l);
                     }
                 }
-                
+
             }
             $('#layersModal .modal-body').append(div);
-            
+
         }
     },
-    
+
     /**
      * Add a data layer
      */
     addData: function (config) {
         this.layerDialog.modal('hide');
         $('.panel-group#textcontainer').hide();
-        
+
         var addNew = true;
         for (var i=0;i<this.visibleData.length;i++) {
             if (this.visibleData[i].id == config.id) {
@@ -239,19 +239,19 @@ FrbKort = {
                 $('#panel_'+this.visibleData[i].id+' .panel-collapse').collapse('hide');
             }
         }
-        
+
         if (addNew) {
             $('#layercontainer').append('<div id="panel_'+config.id+'" class="panel panel-default">'+
-                '<div class="panel-heading">'+
-                '  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
-                '  <strong class="panel-title">'+
-                '    <a class="accordion-toggle" data-toggle="collapse" data-parent="#" href="#collapse_'+config.id+'">'+config.title+'</a>'+
-                '  </strong>'+
-                '</div>'+
-                '<div id="collapse_'+config.id+'" class="panel-collapse collapse in">'+
-                '  <div class="panel-body"><span>'+(config.description ? config.description : '')+'</span><div class="labels"><div class="label-selected">Valgte område</div><div class="label-avg">Hele kommunen</div></div><div class="vectorswitch"><div class="btn-group"></div></div></div>'+
-                '</div>'+
-              '</div>');
+            '<div class="panel-heading">'+
+            '  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
+            '  <strong class="panel-title">'+
+            '    <a class="accordion-toggle" data-toggle="collapse" data-parent="#" href="#collapse_'+config.id+'">'+config.title+'</a>'+
+            '  </strong>'+
+            '</div>'+
+            '<div id="collapse_'+config.id+'" class="panel-collapse collapse in">'+
+            '  <div class="panel-body"><span>'+(config.description ? config.description : '')+'</span><div class="labels"><div class="label-selected">Valgte område</div><div class="label-avg">Hele kommunen</div></div><div class="vectorswitch"><div class="btn-group"></div></div></div>'+
+            '</div>'+
+            '</div>');
             $('#panel_'+config.id+' .close').click(this.bind(function (config) {
                 $('#panel_'+config.id).remove();
                 for (var i=0;i<this.visibleData.length;i++) {
@@ -271,7 +271,7 @@ FrbKort = {
                 }
                 this.hideData(config);
             },this,config));
-            
+
             $('#collapse_'+config.id).on('show.bs.collapse', this.bind(function (config) {
                 $('.panel-collapse').collapse('hide');
             },this,config));
@@ -281,7 +281,7 @@ FrbKort = {
             $('#collapse_'+config.id).on('hide.bs.collapse', this.bind(function (config) {
                 this.hideData(config);
             },this,config));
-            
+
             for (var i = 0;i<config.vector.length;i++) {
                 var b = $('<a class="btn btn-default'+(i===0?' active':'')+' vector_'+config.vector[i]+'" href="#">'+this.config.vector[config.vector[i]].title+'</a>');
                 b.click(this.bind(function (vector,config) {
@@ -292,7 +292,7 @@ FrbKort = {
                 }, this, config.vector[i],config));
                 $('#panel_'+config.id+' .vectorswitch .btn-group').append(b);
             }
-            
+
             this.visibleData.push(config);
             this.showData(config);
         } else {
@@ -301,7 +301,7 @@ FrbKort = {
             }
         }
     },
-    
+
     /**
      * Show the data and set it as active
      */
@@ -321,16 +321,20 @@ FrbKort = {
                     this.showHistory(config);
                 },this,config),
                 error: this.bind(function (response, exception) {
-                    
+
                 },this)
             })
         } else {
-            var vector = ($.inArray(this.currentVector, this.current.vector) ? this.currentVector : this.current.vector[0]);
+            var vector = ($.inArray(this.currentVector, this.current.vector) > -1 ? this.currentVector : this.current.vector[0]);
+
+            $('#panel_'+config.id+' .vectorswitch .btn-group a').removeClass('active');
+            $('#panel_'+config.id+' .vectorswitch .btn-group a.vector_'+vector).addClass('active');
+
             this.showVector(vector);
             this.showHistory(config);
         }
     },
-    
+
     /**
      * Hide the data
      */
@@ -342,12 +346,11 @@ FrbKort = {
                     return;
                 }
             }
-        } else {
-            this.current = null;
-            this.vectorLayer.clearLayers();
         }
+        this.current = null;
+        this.vectorLayer.clearLayers();
     },
-    
+
     /**
      * Handle the color scheme of the active data
      */
@@ -366,7 +369,7 @@ FrbKort = {
         }
         for (var name in config.dates) {
             config.dates[name].sort(function(a, b) { return a.val - b.val });
-            
+
             if (config.colors) {
                 for (var i=0;i<config.dates[name].length;i++) {
                     var val = config.dates[name][i].val;
@@ -382,12 +385,12 @@ FrbKort = {
                 var intervals = config.intervals || 5;
                 var a = config.dates[name][config.dates[name].length-1].val - config.dates[name][0].val;
                 var size = a/intervals;
-                
+
                 config.colors = [];
                 for (var j=0;j<FrbKort.COLORS.length;j++) {
                     config.colors.push({min:j*size,max:j*size+size,color:FrbKort.COLORS[j]});
                 }
-                
+
                 for (var i=0;i<config.dates[name].length;i++) {
                     var g = (config.dates[name][i].val - config.dates[name][0].val)/size;
                     g = parseInt(g);
@@ -399,14 +402,17 @@ FrbKort = {
             }
         }
     },
-    
+
     /**
      * Get a specific row from the active data
      */
     getRowFromData: function (type_id, distrikt_id) {
-        for (var i=0;i<this.current.dates[this.current.date].length;i++) {
-            if (this.current.dates[this.current.date][i].type_id == type_id && this.current.dates[this.current.date][i].distrikt_id == distrikt_id) {
-                return this.current.dates[this.current.date][i];
+        var cd = this.current.dates[this.current.date];
+        if (typeof cd !== 'undefined') {
+            for (var i=0;i<this.current.dates[this.current.date].length;i++) {
+                if (this.current.dates[this.current.date][i].type_id == type_id && this.current.dates[this.current.date][i].distrikt_id == distrikt_id) {
+                    return this.current.dates[this.current.date][i];
+                }
             }
         }
         return null;
@@ -419,13 +425,13 @@ FrbKort = {
         if ($('#legend_'+config.id).length == 0) {
             jQuery('<div id="legend_'+config.id+'" class="legend-content row"></div>').insertBefore('#collapse_'+config.id+' .vectorswitch');
         }
-        
+
         var container = $('#legend_'+config.id);
         container.empty();
-        
+
         var t = $('<table class="table"></table>');
         var tr = $('<tr></tr>');
-        
+
         for (var i=0;i<config.colors.length;i++) {
             tr.append('<td class="" style="width:'+(100/config.colors.length)+'%"><div style="background-color:'+config.colors[i].color+'"></div>'+config.colors[i].min+'-'+config.colors[i].max+(config.unit || '')+'</td>');
         }
@@ -449,15 +455,15 @@ FrbKort = {
         if ($('#graph_'+config.id).length == 0) {
             jQuery('<div id="graph_'+config.id+'" class="graph-content"></div>').insertBefore('#collapse_'+config.id+' .vectorswitch');
         }
-        
+
         this.showGraph ('graph_'+config.id,data,config,showSelected);
-        
+
         this.showSlider(config);
         this.showLegend(config);
     },
-    
+
     showSlider: function (config) {
-        
+
         if ($('#slider_'+config.id).length == 0) {
             jQuery('<div id="slider_'+config.id+'" class="timeslider"><i class="glyphicon glyphicon-play pull-left"></i><div class="slider-container"><input type="text"/></div></div>').insertBefore('#collapse_'+config.id+' .vectorswitch');
             $('#slider_'+config.id+' i').click(this.bind(function (id) {
@@ -469,50 +475,50 @@ FrbKort = {
                 }
             },this,config.id));
         }
-        
+
         var dates = [];
         for (var name in config.dates) {
             dates.push(name);
         }
-        
+
         var input = $('#panel_'+config.id+' .timeslider input').width($('#slider_'+config.id+' .slider-container').width()-10);
         input.slider({
             handle: 'round',
             min: 0,
             max: dates.length-1,
-            value: dates.length-1,
+            value: jQuery.inArray(config.startDate,dates),
             formater: this.bind(function(dates,value) {
                 return dates[value];
             },this,dates)
         }).on('slideStop', this.bind(function (config,dates,event) {
             this.showVector(null,dates[event.value]);
         },this,config,dates));
-        
+
 
         if (this.timer) {
             this.stopTimer(this.timer);
             this.timer = null;
         }
-        
+
         this.timer = {
             id: config.id,
             dates: dates,
             current: dates.length-1
         };
-        
+
     },
-    
+
     startTimer: function () {
-        
+
         $('#slider_'+this.timer.id+' i').removeClass('glyphicon-play').addClass('glyphicon-pause');
-        
+
         this.timer.current++;
         if (this.timer.current >= this.timer.dates.length) {
             this.timer.current = 0;
         }
         $('#panel_'+this.timer.id+' .timeslider input').slider('setValue',this.timer.current);
         this.showVector(null,this.timer.dates[this.timer.current]);
-        
+
         this.timer.interval = setInterval(this.bind(function () {
             this.timer.current++;
             if (this.timer.current >= this.timer.dates.length) {
@@ -522,7 +528,7 @@ FrbKort = {
             this.showVector(null,this.timer.dates[this.timer.current]);
         },this),this.sliderPlayDelay);
     },
-    
+
     stopTimer: function () {
         $('#slider_'+this.timer.id+' i').removeClass('glyphicon-pause').addClass('glyphicon-play');
         window.clearInterval(this.timer.interval);
@@ -556,7 +562,7 @@ FrbKort = {
         }
         return dates;
     },
-    
+
     /**
      * Show a named set of features in the map
      */
@@ -578,9 +584,9 @@ FrbKort = {
 
         // Remove the current feaures from the map
         this.vectorLayer.clearLayers();
-        
+
         this.selectedFeature = null;
-        
+
         // The features are stored in this.vector. If the features aren't loaded, then load it
         if (!this.vector[this.currentVector]) {
             this.vector[this.currentVector] = {};
@@ -593,7 +599,7 @@ FrbKort = {
                     this.vectorLayer.addData(data);
                 },this,this.vector[name]),
                 error: this.bind(function (response, exception) {
-                    
+
                 },this)
             })
 
@@ -601,12 +607,12 @@ FrbKort = {
             if (this.vector[this.currentVector].data) {
                 this.vectorLayer.addData(this.vector[this.currentVector].data);
                 if (this.selectedDistrict) {
-                    
+
                 }
             }
         }
     },
-    
+
     /**
      * Method called when a feature is selected in the map
      */
@@ -615,18 +621,18 @@ FrbKort = {
 
         this.selectedFeature = e;
         this.selectedDistrict = e.target.feature.properties.distrikt_id;
-        
+
         e.target.setStyle({ weight: 7});
-    
+
         if (!L.Browser.ie && !L.Browser.opera) {
             e.target.bringToFront();
         }
-        
+
         //Show info for e.target.feature.properties.distrikt_id
         this.showHistory (this.current);
-        
+
     },
-    
+
     /**
      * Method called when a feature is unselected in the map
      */
@@ -638,13 +644,13 @@ FrbKort = {
             this.selectedFeature = null;
         }
     },
-    
+
     /**
      * Method for initializing the map on start
      */
     setMap: function () {
-        var mapOptions = { 
-            minZoom: 13, 
+        var mapOptions = {
+            minZoom: 13,
             maxZoom: 20,
             zoom: 15,
             center: [55.678265,12.531274]
@@ -654,7 +660,7 @@ FrbKort = {
                 mapOptions[name] = this.config.map[name];
             }
         }
-        
+
         this.map = L.map('map',mapOptions).on('click',this.bind(function () {
             this.featureUnSelected();
             this.showHistory (this.current);
@@ -670,9 +676,9 @@ FrbKort = {
                 attribution: 'Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
             });
         }
-        
+
         baselayer.addTo(this.map);
-        
+
         this.vectorLayer = L.geoJson(null, {
             onEachFeature: this.bind(function (feature, layer) {
                 layer.on({
@@ -690,7 +696,7 @@ FrbKort = {
                     "fillOpacity": (d===null ? 0 : 0.5)
                 }
             },this)
-        }).addTo(this.map); 
+        }).addTo(this.map);
 
         var scaleControl = L.control.scale({
             position: 'bottomright',
@@ -698,44 +704,44 @@ FrbKort = {
         });
         // Larger screens get scale control and expanded layer control
         if (document.body.clientWidth <= 767) {
-        var isCollapsed = true;
+            var isCollapsed = true;
         } else {
             var isCollapsed = false;
             this.map.addControl(scaleControl);
         };
     },
-    
+
     /**
      * Create and show the graph
      */
     showGraph: function (elementID, data, config, showSelected) {
-        
+
         $('#'+elementID).empty();
-        
+
         var margin = {top: 25, right: 10, bottom: 60, left: 25},
-        width = $('#'+elementID).width() - margin.left - margin.right,
-        height = $('#'+elementID).height() - margin.top - margin.bottom;
+            width = $('#'+elementID).width() - margin.left - margin.right,
+            height = $('#'+elementID).height() - margin.top - margin.bottom;
 
         var formatPercent = d3.format(",g");
-    
+
         var x = d3.scale.ordinal()
             .rangeRoundBands([10, width], .1);
-    
+
         var y = d3.scale.linear()
             .range([height, 0]);
-    
+
         var xAxis = d3.svg.axis()
             .scale(x)
             .tickSize(0)
             .orient("bottom");
-    
+
         var yAxis = d3.svg.axis()
             .scale(y)
             .tickSize(2)
             .ticks(2)
             .orient("left")
             .tickFormat(formatPercent);
-    
+
         var svg = d3.select("#"+elementID).append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
@@ -749,14 +755,14 @@ FrbKort = {
             .attr("class", "x axis")
             .attr("transform", "translate(0," + (height) + ")")
             .call(xAxis)
-          .selectAll("text")
+            .selectAll("text")
             .attr("transform", "rotate(45)")
             .style("text-anchor", "start");
 
         svg.append("g")
             .attr("class", "y axis")
             .call(yAxis)
-          .append("text")
+            .append("text")
             .attr("transform", "rotate(0)")
             .attr("y", 0)
             .attr("dy", -6)
@@ -765,9 +771,9 @@ FrbKort = {
 
         if (showSelected) {
 
-        	svg.selectAll(".bar")
+            svg.selectAll(".bar")
                 .data(data)
-              .enter().append("rect")
+                .enter().append("rect")
                 .attr("class", "bar")
                 .attr("x", function(d) { return x(d.name); })
                 .attr("width", x.rangeBand())
@@ -780,22 +786,22 @@ FrbKort = {
                     this.hideTip();
                 },this))
         }
-          
+
         var line = d3.svg.line()
             .x(function(d) { return x(d.name)+x.rangeBand()/2; })
             .y(function(d) { return y(d.avg); });
-          
+
         svg.append("path")
             .datum(data)
             .attr("class", "line")
             .attr("d", line);
-          
+
         var point = svg.append("g")
             .attr("class", "point");
 
         point.selectAll('circle')
             .data(data)
-          .enter().append('circle')
+            .enter().append('circle')
             .on('mouseover', this.bind(function (data,pos) {
                 this.showTip(data.avg,$($('.point circle')[pos]));
             },this))
@@ -807,7 +813,7 @@ FrbKort = {
             .attr("r", 5);
 
     },
-    
+
     /**
      * Add a tool tip element to the DOM with a value at a specific position
      */
@@ -817,7 +823,7 @@ FrbKort = {
         var offset = element.offset();
         tt.offset({top: offset.top-35,left: offset.left-$('.tooltip').width()/2+6});
     },
-    
+
     /**
      * Remove the tool tip element from the DOM
      */
@@ -827,24 +833,24 @@ FrbKort = {
 
     /**
      * Helper method that returns the value of a named URL parameter.
-     * 
+     *
      * Parameters:
      * name - {String} The name of the parameter.
-     * 
+     *
      * Returns:
      * {String} The value. Null if no value
      */
     getURLParameter: function (name) {
         return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
     },
-    
+
     /**
      * Helper method that binds a function to an object. Method to easily create closures with 'this' altered.
-     * 
+     *
      * Parameters:
      * func - {Function} Input function.
      * object - {Object} The object to bind to the input function (as this).
-     * 
+     *
      * Returns:
      * {Function} A closure with 'this' set to the passed in object.
      */
@@ -862,22 +868,22 @@ FrbKort = {
 /**
  * Default colors
  */
-FrbKort.COLORS = [ 
+FrbKort.COLORS = [
     '#FFFFCC','#C2E6993','#78C679','#31A354','#006837'
 ]
 
 /**
  * Test colors - NOT IN USE
  */
-FrbKort.COLORS1 = [ 
+FrbKort.COLORS1 = [
     "ff9900", "b36b00", "ffe6bf", "ffcc80", "00b366", "007d48", "bfffe4", "80ffc9", "400099", "2d006b", "dabfff", "b580ff"
 ]
-FrbKort.COLORS2 = [ 
+FrbKort.COLORS2 = [
     "#ff9900", "#b36b00", "#ffe6bf", "#ffcc80", "#00b366", "#007d48", "#bfffe4", "#80ffc9", "#400099", "#2d006b", "#dabfff", "#b580ff"
 ]
 FrbKort.COLORS3 = [
     '#EDF8FB', '#B2E2E2', '#66C2A4', '#2CA25F', '#006D2C'
 ]
-FrbKort.COLORS4 = [ 
+FrbKort.COLORS4 = [
     '#D7191C','#FDAE61','#FFFFBF','#A6D96A','#1A9641'
 ]
